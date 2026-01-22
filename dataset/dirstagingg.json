@@ -1,0 +1,36 @@
+{
+	"name": "dirstagingg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "dirstaging",
+				"fileSystem": "adlsnycpayroll-somya-sinha"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "AgencyName",
+				"type": "String"
+			},
+			{
+				"name": "FiscalYear",
+				"type": "String"
+			},
+			{
+				"name": "TotalPaidS",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,50 @@
+{
+	"name": "dataflow_AgencyMaster",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ads_AgencyMaster",
+						"type": "DatasetReference"
+					},
+					"name": "sourceagencymaster"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "db_AgencyMaster",
+						"type": "DatasetReference"
+					},
+					"name": "sinkagencymaster"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          AgencyID as string,",
+				"          AgencyName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceagencymaster",
+				"sourceagencymaster sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          AgencyID as string,",
+				"          AgencyName as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkagencymaster"
+			]
+		}
+	}
+}
